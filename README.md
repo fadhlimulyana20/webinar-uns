@@ -22,3 +22,7 @@ Mockup aplikasi dan pembagian PIC dapat dilihat pada link berikut  **[https://bi
 - masukan perintah $ php artisan key:generate
 - masukan perintah $ php artisan migrate
 
+## Link Dahboard Admin LTE
+
+**[https://github.com/ColorlibHQ/AdminLTE/releases](https://github.com/ColorlibHQ/AdminLTE/releases)**
+
