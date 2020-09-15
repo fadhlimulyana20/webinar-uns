@@ -16,6 +16,9 @@
                 <li class="nav-item {{ (request()->is('tentang')) ? 'active' : '' }}">
                     <a class="nav-link" href={{route('about')}}>Tentang</a>
                 </li>
+                <li class="nav-item {{ (request()->is('webinar')) ? 'active' : '' }}">
+                    <a class="nav-link" href={{route('webinar.index')}}>Webinar</a>
+                </li>
                 <li class="nav-item my-auto px-1">
                     <a href="" class="btn btn-sm btn-block btn-success font-weight-bold">Login</a>
                 </li>

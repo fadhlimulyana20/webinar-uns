@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/tentang', 'PagesController@about')->name('about');
+
+Route::resource('webinar', 'WebinarJadwalsController');
