@@ -11,41 +11,54 @@
 				{{-- <img src={{asset('image/Kids-Studying-from-Home-rafiki.svg')}} alt="" class="img-fluid w-75"> --}}
 				<h2 class="mb-0">Selamat Datang di Aplikasi </h2>
                 <h1 class="title-big font-weight-bold">Webinar UNS</h1>
-                <p class="font-weight-bolder">Aplikasi Webinar UNS adalah aplikasi yang digunakan untuk mendaftarkan diri pada webinar yang diselenggarakan oleh UNS.</p>                
+                <p class="font-weight-bolder">Aplikasi Webinar UNS adalah aplikasi yang digunakan untuk mendaftarkan diri pada webinar yang diselenggarakan oleh UNS.</p>
                 {{-- <button class="btn btn-lg btn-dark font-weight-bold rounded-pill">Getting Started</button> --}}
             </div>
             <div class="col-md-5">
-				<form class="shadow px-3 py-4 rounded bg-white">
-					<h3 class="mb-4 text-dark font-weight-bold">Buat Akun Anda</h3>
-					<div class="form-group">
-						{{-- <label for="name-input">Nama</label> --}}
-						<input type="text" class="form-control" name="name-input" id="name-input" placeholder="Nama">
-					</div>
-					<div class="form-group">
-						{{-- <label for="email-input">Email</label> --}}
-						<input type="email" class="form-control" name="email-input" id="email-input" placeholder="Email">
-					</div>
-					<div class="form-group">
-						{{-- <label for="password-input">Buat Password</label> --}}
-						<input type="password" class="form-control" name="password-input" id="password-input" placeholder="Buat Password">
-					</div>
-					<div class="form-group">
-						{{-- <label for="-confirm-password-input">Konfirmasi Password</label> --}}
-						<input type="password" class="form-control" name="-confirm-password-input" id="-confirm-password-input" placeholder="Konfirmasi Password">
-						<p class="small text-muted mt-3">
-							Pastikan setidaknya 15 karakter ATAU setidaknya 8 karakter termasuk angka dan huruf kecil.
-						</p>
-					</div>
-					<button type="submit" class="btn btn-block btn-success font-weight-bold">
-						<span class="align-middle">Buat Akun</span>
-						<ion-icon class="align-middle ml-2" name="send"></ion-icon>
-					</button>
-					<div class="mt-4">
-						<p class="small text-muted">
-							Dengan mengklik "Buat Akun", Anda menyetujui Persyaratan Layanan dan Pernyataan Privasi kami. Kami sesekali akan mengirimi Anda email terkait akun.
-						</p>
-					</div>
-				</form>
+              <form class="shadow px-3 py-4 rounded bg-white" method="POST" action="{{ route('login') }}">
+                  @csrf
+      					<h3 class="mb-4 text-dark font-weight-bold">Login Ke Akun Anda</h3>
+                <div class="form-group">
+                  <input id="email" type="email" placeholder="Masukkan Alamat Email Anda" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                  @error('email')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                </div>
+
+                <div class="form-group">
+                  <input id="password" type="password" placeholder="Masukkan Password Anda"class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                  @error('password')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                </div>
+
+                <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label class="form-check-label text-dark" for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-success font-weight-bold">
+                        {{ __('Login') }}
+                        <ion-icon class="align-middle ml-2" name="send"></ion-icon>
+                    </button>
+
+                    @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif
+                </div>
+      				</form>
             </div>
 		</div>
 		{{-- <div class="d-flex justify-content-center mt-4">
