@@ -19,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/tentang', 'PagesController@about')->name('about');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
