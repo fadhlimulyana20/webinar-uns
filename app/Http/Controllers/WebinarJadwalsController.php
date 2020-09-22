@@ -25,7 +25,7 @@ class WebinarJadwalsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.webinar.create');
     }
 
     /**
@@ -36,7 +36,26 @@ class WebinarJadwalsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'agenda' => 'required',
+            'deskripsi' => 'required',
+            'tanggal_awal' => 'required',
+            'tanggal_akhir' => 'required',
+            'tgl_daftar_awal' => 'required',
+            'tgl_daftar_akhir' => 'required',
+        ]);
+
+        // Create Webinar
+        $webinar = new Webinar;
+        $webinar->agenda = $request->input('agenda');
+        $webinar->tanggal_awal = $request->input('tanggal_awal');
+        $webinar->tanggal_akhir = $request->input('tanggal_akhir');
+        $webinar->tgl_daftar_awal = $request->input('tgl_daftar_awal');
+        $webinar->tgl_daftar_akhir = $request->input('tgl_daftar_akhir');
+        $webinar->deskripsi = $request->input('deskripsi');
+        $webinar->save();
+
+        return redirect('/webinar');
     }
 
     /**
@@ -59,7 +78,8 @@ class WebinarJadwalsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $webinar = Webinar::find($id);
+        return view("pages.webinar.edit")->with('webinar', $webinar);
     }
 
     /**
@@ -71,7 +91,26 @@ class WebinarJadwalsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'agenda' => 'required',
+            'deskripsi' => 'required',
+            'tanggal_awal' => 'required',
+            'tanggal_akhir' => 'required',
+            'tgl_daftar_awal' => 'required',
+            'tgl_daftar_akhir' => 'required',
+        ]);
+
+        // Create Webinar
+        $webinar = Webinar::find($id);
+        $webinar->agenda = $request->input('agenda');
+        $webinar->tanggal_awal = $request->input('tanggal_awal');
+        $webinar->tanggal_akhir = $request->input('tanggal_akhir');
+        $webinar->tgl_daftar_awal = $request->input('tgl_daftar_awal');
+        $webinar->tgl_daftar_akhir = $request->input('tgl_daftar_akhir');
+        $webinar->deskripsi = $request->input('deskripsi');
+        $webinar->save();
+
+        return redirect('/webinar/'.$id);
     }
 
     /**
@@ -82,6 +121,9 @@ class WebinarJadwalsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $webinar = Webinar::find($id);
+        $webinar->delete();
+
+        return redirect('/webinar');
     }
 }

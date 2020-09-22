@@ -11,7 +11,10 @@
 @section('content')
     <section class="content-section">
         <div class="container">
-            <h2 class="font-weight-bold"> {{$webinar->agenda}} </h2>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="font-weight-bold"> {{$webinar->agenda}} </h2>
+                <a class="btn btn-outline-primary btn-sm" href="{{ route('webinar.edit', $webinar->id) }}">Edit</a>
+            </div>
             <div class="row no-gutters mb-4">
                 <div class="col-md-8 px-2">
                     <img src="https://picsum.photos/536/354" class="img-fluid rounded shadow w-100" alt="...">
