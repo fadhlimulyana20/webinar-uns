@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <title>{{config('app.name')}} - @yield('title')</title>
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
 <body>
     @include('components.navbar')

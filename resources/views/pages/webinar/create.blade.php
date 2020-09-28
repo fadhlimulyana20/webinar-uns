@@ -60,4 +60,7 @@
             </form>
         </div>
     </section>
+    <script>
+        CKEDITOR.replace( 'deskripsi' );
+    </script>
 @endsection

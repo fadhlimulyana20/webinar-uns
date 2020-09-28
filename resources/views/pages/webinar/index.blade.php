@@ -15,7 +15,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title font-weight-bold">{{ $webinar->agenda }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $webinar->tanggal_awal }}</h6>
-                                    <p class="card-text">{{ Str::limit($webinar->deskripsi, 100) }}</p>
+                                    <p class="card-text">{!! Str::limit($webinar->deskripsi, 100) !!}</p>
                                 </div>
                                 <div class="card-footer bg-transparent">
                                     <a href="/webinar/{{ $webinar->id }}">

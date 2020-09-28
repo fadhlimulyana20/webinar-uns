@@ -32,7 +32,9 @@
                 </div>
             </div>
             <h5 class="font-weight-bold">Deskripsi</h5>
-            <p>{{ $webinar->deskripsi }}</p>
+            <div class="paragraph-content">
+                {!! $webinar->deskripsi !!}
+            </div>
         </div>
     </section>
 @endsection
