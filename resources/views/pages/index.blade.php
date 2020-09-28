@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-<section id="main" class="content-section bg-light-blue-main min-vh">
+<section id="main" class="content-section d-flex align-items-center bg-light-blue-main min-vh">
     <div class="container text-white">
         <div class="row d-flex align-items-center text-md-left text-center py-5">
 
