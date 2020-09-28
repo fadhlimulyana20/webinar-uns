@@ -14,6 +14,7 @@
                 <p class="font-weight-bolder">Aplikasi Webinar UNS adalah aplikasi yang digunakan untuk mendaftarkan diri pada webinar yang diselenggarakan oleh UNS.</p>
                 {{-- <button class="btn btn-lg btn-dark font-weight-bold rounded-pill">Getting Started</button> --}}
             </div>
+            @guest
             <div class="col-md-5">
               <form class="shadow px-3 py-4 rounded bg-white" method="POST" action="{{ route('login') }}">
                   @csrf
@@ -60,6 +61,7 @@
                 </div>
       				</form>
             </div>
+            @endguest
 		</div>
 		{{-- <div class="d-flex justify-content-center mt-4">
 			<a href="" class="h1 text-white" id="showMore">
