@@ -25,3 +25,6 @@ Route::resource('webinar', 'WebinarJadwalsController');
 // Route::get('/webinar', 'WebinarJadwalsController@index')->name('webinar.index');
 // Route::post('webinar', 'WebinarJadwalsController@store')->name('webinar.store');
 // Route::get('/webinar/buat', 'WebinarJadwalsController@create')->name('webinar.create');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

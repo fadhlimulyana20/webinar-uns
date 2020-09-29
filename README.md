@@ -20,5 +20,9 @@ Mockup aplikasi dan pembagian PIC dapat dilihat pada link berikut  **[https://bi
 - masukan perintah $ cp .env.example .env
 - setting env agar bisa terhubung dengan database production
 - masukan perintah $ php artisan key:generate
-- masukan perintah $ php artisan migrate
+- masukan perintah $ php artisan migrate:refresh
+
+## Link Dahboard Admin LTE
+
+**[https://github.com/ColorlibHQ/AdminLTE/releases](https://github.com/ColorlibHQ/AdminLTE/releases)**
 
