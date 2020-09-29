@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\WebinarJadwal as Webinar;
 
 class WebinarJadwalsController extends Controller
@@ -43,7 +44,24 @@ class WebinarJadwalsController extends Controller
             'tanggal_akhir' => 'required',
             'tgl_daftar_awal' => 'required',
             'tgl_daftar_akhir' => 'required',
+            'path_file_pamflet' => 'image|nullable|max:1999',
         ]);
+
+        // hnadling file template
+        if($request->hasFile('path_file_pamflet')){
+            // get Filename with extention
+            $filenameWithExt = $request->file('path_file_pamflet')->getClientOriginalName();
+            // get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // get just extension
+            $extension = $request->file('path_file_pamflet')->extension();
+            // Filename to store
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('path_file_pamflet')->storeAs('public/file_pamflet', $filenameToStore);
+        }else{
+            $filenameToStore = 'noimage.jpg';
+        }
 
         // Create Webinar
         $webinar = new Webinar;
@@ -53,6 +71,7 @@ class WebinarJadwalsController extends Controller
         $webinar->tgl_daftar_awal = $request->input('tgl_daftar_awal');
         $webinar->tgl_daftar_akhir = $request->input('tgl_daftar_akhir');
         $webinar->deskripsi = $request->input('deskripsi');
+        $webinar->path_file_pamflet = $filenameToStore;
         $webinar->save();
 
         return redirect('/webinar');
@@ -98,7 +117,22 @@ class WebinarJadwalsController extends Controller
             'tanggal_akhir' => 'required',
             'tgl_daftar_awal' => 'required',
             'tgl_daftar_akhir' => 'required',
+            'path_file_pamflet' => 'image|nullable|max:1999',
         ]);
+
+        // hnadling file template
+        if($request->hasFile('path_file_pamflet')){
+            // get Filename with extention
+            $filenameWithExt = $request->file('path_file_pamflet')->getClientOriginalName();
+            // get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // get just extension
+            $extension = $request->file('path_file_pamflet')->extension();
+            // Filename to store
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('path_file_pamflet')->storeAs('public/file_pamflet', $filenameToStore);
+        }
 
         // Create Webinar
         $webinar = Webinar::find($id);
@@ -108,6 +142,10 @@ class WebinarJadwalsController extends Controller
         $webinar->tgl_daftar_awal = $request->input('tgl_daftar_awal');
         $webinar->tgl_daftar_akhir = $request->input('tgl_daftar_akhir');
         $webinar->deskripsi = $request->input('deskripsi');
+        // If User Upload image again then update image filename
+        if($request->hasFile('path_file_pamflet')){
+            $webinar->path_file_pamflet = $filenameToStore;
+        }
         $webinar->save();
 
         return redirect('/webinar/'.$id);
@@ -122,6 +160,13 @@ class WebinarJadwalsController extends Controller
     public function destroy($id)
     {
         $webinar = Webinar::find($id);
+
+        if($webinar->path_file_pamflet != 'noimage.jpg'){
+            // Delete image
+            printf($webinar->path_file_pamflet);
+            Storage::delete('public/file_pamflet/'.$webinar->path_file_pamflet);
+        }
+
         $webinar->delete();
 
         return redirect('/webinar');

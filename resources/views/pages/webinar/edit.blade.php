@@ -10,13 +10,13 @@
             <div class="shadow p-3 p-md-5">
                 <div class="d-flex justify-content-between mb-4">
                     <h2 class="font-weight-bold"> Mengubah Webinar </h2>
-                    <form action="{{ route('webinar.destroy', $webinar->id) }}" class="d-md-inline d-none">
+                    <form action="{{ route('webinar.destroy', $webinar->id) }}" class="d-md-inline d-none" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('DELETE')
                         <input class="btn btn-danger btn-sm font-weight-bold" type="submit" value="Hapus">
                     </form>
                 </div>
-                <form action="{{ route('webinar.update', $webinar->id) }}" method="POST" >
+                <form action="{{ route('webinar.update', $webinar->id) }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -60,6 +60,9 @@
                                 <input class="form-control" type="date" name="tgl_daftar_akhir" id="tgl_daftar_akhir" value="{{ $webinar->tgl_daftar_akhir }}">
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="path_file_pamflet" id="path_file_pamflet" class="form-control">
                     </div>
                     <div class="row d-flex justify-content-end mt-4">
                         <div class="col-md-4 mb-2">

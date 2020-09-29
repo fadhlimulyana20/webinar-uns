@@ -17,7 +17,7 @@
             </div>
             <div class="row no-gutters mb-4">
                 <div class="col-md-8 px-2">
-                    <img src="https://picsum.photos/536/354" class="img-fluid rounded shadow w-100" alt="...">
+                    <img src="/storage/file_pamflet/{{ $webinar->path_file_pamflet }}" class="img-fluid rounded shadow w-100" alt="...">
                 </div>
                 <div class="col-md-4 px-2">
                     <div class="bg-white rounded shadow p-4 mt-md-0 mt-4">

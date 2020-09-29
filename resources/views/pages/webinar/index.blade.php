@@ -11,7 +11,7 @@
                     @foreach ($webinars as $webinar)
                         <div class="col-lg-3 col-md-4 px-md-2 px-1">
                             <div class="card shadow mb-md-2 mb-2">
-                                <img src="https://picsum.photos/536/354" class="card-img-top" alt="...">
+                                <img src="/storage/file_pamflet/{{ $webinar->path_file_pamflet }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title font-weight-bold">{{ $webinar->agenda }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $webinar->tanggal_awal }}</h6>

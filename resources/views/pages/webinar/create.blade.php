@@ -7,7 +7,7 @@
 @section('content')
     <section class="content-section">
         <div class="container">
-            <form action="{{ route('webinar.store') }}" method="POST" class="shadow p-3 p-md-5">
+            <form action="{{ route('webinar.store') }}" method="POST" class="shadow p-3 p-md-5" enctype="multipart/form-data">
                 @csrf
                 <h2 class="font-weight-bold mb-4"> Membuat Webinar </h2>
                 <div class="form-group">
@@ -51,6 +51,9 @@
                             <input class="form-control" type="date" name="tgl_daftar_akhir" id="tgl_daftar_akhir">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="path_file_pamflet" id="path_file_pamflet" class="form-control">
                 </div>
                 <div class="row d-flex justify-content-end mt-4">
                     <div class="col-md-4">
