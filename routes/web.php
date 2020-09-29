@@ -23,3 +23,7 @@ Route::get('/tentang', 'PagesController@about')->name('about');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::namespace('SuperUser')->prefix('superuser')->name('superuser.')->group(function(){
+  Route::resource('/users', 'UsersController');
+});
