@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperUser;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use Gate;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -63,6 +64,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if(Gate::denies('edit-users')){
+          return redirect(route('superuser.users.index'));
+        }
         $roles = Role::all();
 
         return view('superuser.users.edit')->with([
@@ -82,6 +86,10 @@ class UsersController extends Controller
     {
         $user->roles()->sync($request->roles);
 
+        $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->save();
+
         return redirect()->route('superuser.users.index');
     }
 
@@ -93,6 +101,10 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+      if(Gate::denies('delete-users')){
+        return redirect(route('superuser.users.index'));
+      }
+
       $user->roles()->detach();
       $user->delete();
 
