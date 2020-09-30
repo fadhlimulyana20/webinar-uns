@@ -11,6 +11,7 @@
     @include('components.navbar')
 
     <div class="main-body">
+        @include('partials.alerts')
         @yield('content')
     </div>
     <footer class="footer shadow">

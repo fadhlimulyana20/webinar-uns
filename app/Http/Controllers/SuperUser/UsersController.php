@@ -88,7 +88,8 @@ class UsersController extends Controller
 
         $user->nama = $request->nama;
         $user->email = $request->email;
-        $user->save();
+        if($user->save())$request->session()->flash('success', $user->nama. ' has been updated');
+        else $request->session()->flash('error', 'User could not be updated');
 
         return redirect()->route('superuser.users.index');
     }
