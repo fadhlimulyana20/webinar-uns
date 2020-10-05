@@ -41,5 +41,8 @@ class AuthServiceProvider extends ServiceProvider
           return $user->hasRole('admin');
         });
 
+        Gate::define('are-pendaftar', function($user){
+          return $user->hasRole('pendaftar');
+        });
     }
 }

@@ -31,3 +31,7 @@ Route::namespace('SuperUser')->prefix('superuser')->name('superuser.')->middlewa
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:are-admin')->group(function(){
   Route::get('beranda/', 'AdminController@index')->name('layout');
 });
+
+Route::namespace('Pendaftar')->prefix('pendaftar')->name('pendaftar.')->middleware('can:are-pendaftar')->group(function(){
+  Route::get('beranda/', 'PendaftarController@index')->name('layout');
+});
