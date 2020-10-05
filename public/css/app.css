@@ -10966,6 +10966,10 @@ a.text-dark:focus {
   z-index: -1;
 }
 
+.paragraph-content p {
+  font-size: 1.2em !important;
+}
+
 @media (min-width: 768px) {
   .form-min {
     width: 20em;

@@ -58,4 +58,9 @@ class User extends Authenticatable
 
       return false;
     }
+
+    // relasi penyelenggara ke Webinar Jadwal dengan constraint 1 to Many
+    public function organizeWebinar(){
+      return $this->hasMany('App\WebinarJadwal', 'id_user_penyelenggara');
+    }
 }

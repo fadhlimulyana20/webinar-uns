@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-<section id="main" class="content-section bg-light-blue-main min-vh">
+<section id="main" class="content-section d-flex align-items-center bg-light-blue-main min-vh">
     <div class="container text-white">
         <div class="row d-flex align-items-center text-md-left text-center py-5">
 
@@ -91,70 +91,27 @@
     <div class="container">
         <h1 class="text-center text-white">Webinar <span class="font-weight-bold">Terbaru</span></h1>
         <div class="row mt-5">
-            <div class="col-md-3 col-6">
-                <div class="card mb-4 shadow">
-                    <img src="https://picsum.photos/536/354" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					</div>
-					 <div class="card-footer bg-transparent">
-						 <a href="">
-							 <div class="d-flex justify-content-between align-items-center">
-								 <span class="font-weight-bold">Lihat</span>
-								 <ion-icon class="align-middle" name="arrow-forward-circle-outline"></ion-icon>
-							 </div>
-						 </a>
-					 </div>
-                  </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card mb-4 shadow">
-                    <img src="https://picsum.photos/536/354" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					</div>
-					 <div class="card-footer bg-transparent">
-						<a href="">
-							 <div class="d-flex justify-content-between align-items-center">
-								 <span class="font-weight-bold">Lihat</span>
-								 <ion-icon class="align-middle" name="arrow-forward-circle-outline"></ion-icon>
-							 </div>
-						 </a>
-					 </div>
-                  </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card mb-4 shadow">
-                    <img src="https://picsum.photos/536/354" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					</div>
-					 <div class="card-footer bg-transparent">
-						<a href="">
-							 <div class="d-flex justify-content-between align-items-center">
-								 <span class="font-weight-bold">Lihat</span>
-								 <ion-icon class="align-middle" name="arrow-forward-circle-outline"></ion-icon>
-							 </div>
-						 </a>
-					 </div>
-                  </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card mb-4 shadow">
-                    <img src="https://picsum.photos/536/354" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					</div>
-					 <div class="card-footer bg-transparent">
-						<a href="">
-							 <div class="d-flex justify-content-between align-items-center">
-								 <span class="font-weight-bold">Lihat</span>
-								 <ion-icon class="align-middle" name="arrow-forward-circle-outline"></ion-icon>
-							 </div>
-						 </a>
-					 </div>
-                  </div>
-            </div>
+            @if (count($webinars) > 0)
+                @foreach ($webinars as $webinar)
+                    <div class="col-md-3 col-6">
+                        <div class="card mb-4 shadow">
+                            <img src="/storage/file_pamflet/{{ $webinar->path_file_pamflet }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title font-weight-bold">{{ $webinar->agenda }}</h5>
+                                <p class="card-text">{!! Str::limit($webinar->deskripsi, 100) !!}</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/webinar/{{ $webinar->id }}">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="font-weight-bold">Lihat</span>
+                                        <ion-icon class="align-middle" name="arrow-forward-circle-outline"></ion-icon>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </section>
