@@ -33,3 +33,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('SuperUser')->prefix('superuser')->name('superuser.')->middleware('can:manage-users')->group(function(){
   Route::resource('/users', 'UsersController');
 });
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:are-admin')->group(function(){
+  Route::get('beranda/', 'AdminController@index')->name('layout');
+});
