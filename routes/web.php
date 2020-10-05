@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/tentang', 'PagesController@about')->name('about');
 
+Route::get('/webinar/mywebinar', 'WebinarJadwalsController@my')->name('webinar.user_index');
 Route::resource('webinar', 'WebinarJadwalsController');
 // Webinar Jadwal Routing
 // Route::get('/webinar', 'WebinarJadwalsController@index')->name('webinar.index');

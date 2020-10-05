@@ -21,10 +21,10 @@
                 </div>
                 <div class="col-md-4 px-2">
                     <div class="bg-white rounded shadow p-4 mt-md-0 mt-4">
-                        <h5 class="font-weight-bold">Periode</h5>
-                        <p>{{ $webinar->tanggal_awal }} <span class="font-weight-bold">s/d</span> {{ $webinar->tanggal_akhir }}</p>
+                        <h5 class="font-weight-bold">Pelaksanaan</h5>
+                        <p>{{ $webinar->tanggal_pelaksanaan }}</p>
                         <h5 class="font-weight-bold">Pendaftaran</h5>
-                        <p>{{ $webinar->tgl_daftar_awal }} <span class="font-weight-bold">s/d</span> {{ $webinar->tgl_daftar_akhir }}</p>
+                        <p>{{ $webinar->tanggal_pendaftaran }}</p>
                         <div class="mt-4">
                             <button class="btn btn-block rounded btn-success font-weight-bold">Daftar Sekarang</button>
                         </div>
