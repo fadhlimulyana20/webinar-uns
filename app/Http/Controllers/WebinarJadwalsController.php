@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\WebinarJadwal as Webinar;
+use App\User;
 
 class WebinarJadwalsController extends Controller
 {
@@ -16,7 +17,27 @@ class WebinarJadwalsController extends Controller
     public function index()
     {
         $webinars =  Webinar::all(); 
+        // $id_user = auth()->user()->id_user;
+        // printf($id_user);
+        // $user = User::find($id_user);
+        // echo($user);
+        // $webinars = $user->webinarJadwals;
         return view("pages.webinar.index")->with('webinars', $webinars);
+    }
+
+    // controller untuk webinar yang dimiliki oleh user
+    // Jadi hanya menampilkan list webinar yang dibuat oleh user terkait
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function my(){
+        $id_user = auth()->user()->id_user;
+        $user = User::find($id_user);
+        $webinars = $user->organizeWebinar;
+
+        return view("pages.webinar.user_index")->with('webinars', $webinars);
     }
 
     /**
@@ -72,9 +93,10 @@ class WebinarJadwalsController extends Controller
         $webinar->tgl_daftar_akhir = $request->input('tgl_daftar_akhir');
         $webinar->deskripsi = $request->input('deskripsi');
         $webinar->path_file_pamflet = $filenameToStore;
+        $webinar->id_user_penyelenggara = auth()->user()->id_user;
         $webinar->save();
 
-        return redirect('/webinar');
+        return redirect('/webinar/mywebinar');
     }
 
     /**
@@ -148,7 +170,7 @@ class WebinarJadwalsController extends Controller
         }
         $webinar->save();
 
-        return redirect('/webinar/'.$id);
+        return redirect('/webinar/mywebinar');
     }
 
     /**
@@ -169,6 +191,6 @@ class WebinarJadwalsController extends Controller
 
         $webinar->delete();
 
-        return redirect('/webinar');
+        return redirect('/webinar/mywebinar');
     }
 }
