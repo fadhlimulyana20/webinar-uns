@@ -44,3 +44,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:are-
   Route::get('webinar/{webinar}/edit', 'AdminController@editWebinar')->name('webinar.edit');
   Route::match(['put', 'patch'], 'webinar/{webinar}', 'AdminController@updateWebinar')->name('webinar.update');
 });
+
+Route::namespace('Pendaftar')->prefix('pendaftar')->name('pendaftar.')->middleware('can:are-pendaftar')->group(function(){
+  Route::get('beranda/', 'PendaftarController@index')->name('layout');
+});
