@@ -21,9 +21,10 @@ Route::get('/', 'PagesController@index')->name('index');
 Route::get('/tentang', 'PagesController@about')->name('about');
 
 Route::get('/webinar/mywebinar', 'WebinarJadwalsController@my')->name('webinar.user_index');
-Route::resource('webinar', 'WebinarJadwalsController');
+// Route::resource('webinar', 'WebinarJadwalsController');
 // Webinar Jadwal Routing
-// Route::get('/webinar', 'WebinarJadwalsController@index')->name('webinar.index');
+Route::get('/webinar', 'WebinarJadwalsController@index')->name('webinar.index');
+Route::get('/webinar/{webinar}', 'WebinarJadwalsController@show')->name('webinar.show');
 // Route::post('webinar', 'WebinarJadwalsController@store')->name('webinar.store');
 // Route::get('/webinar/buat', 'WebinarJadwalsController@create')->name('webinar.create');
 Auth::routes();
@@ -36,4 +37,10 @@ Route::namespace('SuperUser')->prefix('superuser')->name('superuser.')->middlewa
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:are-admin')->group(function(){
   Route::get('beranda/', 'AdminController@index')->name('layout');
+  Route::get('webinar/', 'AdminController@webinar')->name('webinar');
+  Route::post('webinar/', 'AdminController@storeWebinar')->name('webinar.store');
+  Route::delete('webinar/{webinar}', 'AdminController@destroyWebinar')->name('webinar.destroy');
+  Route::get('webinar/create', 'AdminController@createWebinar')->name('webinar.create');
+  Route::get('webinar/{webinar}/edit', 'AdminController@editWebinar')->name('webinar.edit');
+  Route::match(['put', 'patch'], 'webinar/{webinar}', 'AdminController@updateWebinar')->name('webinar.update');
 });
