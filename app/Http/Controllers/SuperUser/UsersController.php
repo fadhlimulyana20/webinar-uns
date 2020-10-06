@@ -21,10 +21,12 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         if($request->has('cari')){
-            $users = User::where('email', 'LIKE', '%'.$request->cari.'%')->orWhere('nama', 'LIKE', '%'.$request->cari.'%')->get();
+            $users = User::where('email', 'LIKE', '%'.$request->cari.'%')
+                          ->orWhere('nama', 'LIKE', '%'.$request->cari.'%')
+                          ->get();
         }
         else{
-          $users = User::all();
+          $users = User::paginate(20);
         }
         return view('superuser.users.index')->with('users', $users);
     }
