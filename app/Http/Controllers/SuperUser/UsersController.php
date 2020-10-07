@@ -23,7 +23,7 @@ class UsersController extends Controller
         if($request->has('cari')){
             $users = User::where('email', 'LIKE', '%'.$request->cari.'%')
                           ->orWhere('nama', 'LIKE', '%'.$request->cari.'%')
-                          ->get();
+                          ->paginate(20);
         }
         else{
           $users = User::paginate(20);

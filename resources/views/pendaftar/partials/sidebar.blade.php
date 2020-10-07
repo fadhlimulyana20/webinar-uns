@@ -25,7 +25,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
          <li class="nav-item">
-           <a href="pages/widgets.html" class="nav-link">
+           <a href="{{ route('pendaftar.layout') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.layout') !== False) ? 'active' : '' }}">
              <i class="nav-icon fas fa-tachometer-alt"></i>
              <p>
                Beranda
@@ -33,7 +33,7 @@
            </a>
          </li>
         <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.webinar') !== False) ? 'active' : '' }}">
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>
               Webinar
@@ -44,36 +44,13 @@
             <li class="nav-item">
               <a href="./index.html" class="nav-link">
                 <i class="nav-icon fas fa-calendar-plus"></i>
-                <p>Buat Webinar</p>
+                <p>Pendaftaran</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./index2.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-check"></i>
                 <p>Webinar Saya</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chalkboard-teacher"></i>
-            <p>
-              Pembicara
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
-                <i class="fas fa-user-plus nav-icon"></i>
-                <p>Tambahkan pembicara</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                <i class="fas fa-portrait nav-icon"></i>
-                <p>Daftar pembicara</p>
               </a>
             </li>
           </ul>
