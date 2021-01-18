@@ -30,9 +30,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  @include('admin.partials.navbar')
+  @include('pendaftar.partials.navbar')
 
-  @include('admin.partials.sidebar')
+  @include('pendaftar.partials.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -47,7 +47,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @include('admin.partials.footer')
+  @include('pendaftar.partials.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

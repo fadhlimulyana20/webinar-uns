@@ -5,7 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Users</div>
+                <div class="card-header">Users
+                    <form class="form-inline float-right" action="/superuser/users" method="GET">
+                        <input class="form-control-sm" type="search" placeholder="Search" name="cari" value="">
+                        <button type="submit" class="btn btn-sm btn-outline-success">Search</button>
+                    </form>
+                </div>
 
                 <div class="card-body">
                   <table class="table">
@@ -37,6 +42,7 @@
                         @endforeach
                       </tbody>
                   </table>
+                  {{$users->links()}}
                 </div>
             </div>
         </div>
