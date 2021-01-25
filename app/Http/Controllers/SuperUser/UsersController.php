@@ -18,9 +18,16 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if($request->has('cari')){
+            $users = User::where('email', 'LIKE', '%'.$request->cari.'%')
+                          ->orWhere('nama', 'LIKE', '%'.$request->cari.'%')
+                          ->paginate(20);
+        }
+        else{
+          $users = User::paginate(20);
+        }
         return view('superuser.users.index')->with('users', $users);
     }
 
