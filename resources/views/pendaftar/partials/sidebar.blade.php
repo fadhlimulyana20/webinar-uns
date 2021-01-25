@@ -32,29 +32,12 @@
              </p>
            </a>
          </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.webinar') !== False) ? 'active' : '' }}">
-            <i class="nav-icon far fa-calendar-alt"></i>
-            <p>
-              Webinar
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="./pendaftaran" class="nav-link">
-                <i class="nav-icon fas fa-calendar-plus"></i>
-                <p>Pendaftaran</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-check"></i>
-                <p>Webinar Saya</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+         <li class="nav-item">
+            <a href="./index2.html" class="nav-link">
+              <i class="nav-icon far fa-calendar-check"></i>
+              <p>Webinar Saya</p>
+            </a>
+          </li>
         <li class="nav-item">
           <a class="dropdown-item" href="{{ route('logout') }}"
              onclick="event.preventDefault();
