@@ -25,36 +25,19 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
          <li class="nav-item">
-           <a href="{{ route('pendaftar.layout') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.layout') !== False) ? 'active' : '' }}">
+           <a href="{{ route('pendaftar.index') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.layout') !== False) ? 'active' : '' }}">
              <i class="nav-icon fas fa-tachometer-alt"></i>
              <p>
                Beranda
              </p>
            </a>
          </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.webinar') !== False) ? 'active' : '' }}">
-            <i class="nav-icon far fa-calendar-alt"></i>
-            <p>
-              Webinar
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="./index.html" class="nav-link">
-                <i class="nav-icon fas fa-calendar-plus"></i>
-                <p>Pendaftaran</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-check"></i>
-                <p>Webinar Saya</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+         <li class="nav-item">
+            <a href="{{ route('pendaftar.webinar') }}" class="nav-link">
+              <i class="nav-icon far fa-calendar-check"></i>
+              <p>Webinar Saya</p>
+            </a>
+          </li>
         <li class="nav-item">
           <a class="dropdown-item" href="{{ route('logout') }}"
              onclick="event.preventDefault();

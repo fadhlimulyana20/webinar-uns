@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Pendaftar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\WebinarJadwal;
+use App\User;
 
 class PendaftarController extends Controller
 {
@@ -14,7 +16,15 @@ class PendaftarController extends Controller
      */
     public function index()
     {
-        return view('pendaftar.layout');
+        $id_user = auth()->user()->id_user;
+        $user = User::find($id_user);
+        $myWebinars = $user->organizeWebinar;
+
+        $webinars = WebinarJadwal::all();
+        return view('pendaftar.index', [
+            'webinars' => $webinars,
+            'myWebinars' => $myWebinars,
+        ]);
     }
 
     /**
@@ -81,5 +91,12 @@ class PendaftarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function webinar(){
+        $id_user = auth()->user()->id_user;
+        $user = User::find($id_user);
+        $webinars = $user->organizeWebinar;
+        return view('pendaftar.webinar')->with('webinars',$webinars);
     }
 }
