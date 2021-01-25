@@ -46,6 +46,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:are-
 });
 
 Route::namespace('Pendaftar')->prefix('pendaftar')->name('pendaftar.')->middleware('can:are-pendaftar')->group(function(){
-  Route::get('beranda/', 'PendaftarController@index')->name('layout');
-  Route::get('pendaftaran/', 'PendaftarController@pendaftaran')->name('pendaftaran');
+  Route::get('beranda/', 'PendaftarController@index')->name('index');
+  Route::get('webinar/','PendaftarController@webinar')->name('webinar');
 });

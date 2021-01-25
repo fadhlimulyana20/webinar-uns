@@ -25,7 +25,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
          <li class="nav-item">
-           <a href="{{ route('pendaftar.layout') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.layout') !== False) ? 'active' : '' }}">
+           <a href="{{ route('pendaftar.index') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'pendaftar.layout') !== False) ? 'active' : '' }}">
              <i class="nav-icon fas fa-tachometer-alt"></i>
              <p>
                Beranda
@@ -33,7 +33,7 @@
            </a>
          </li>
          <li class="nav-item">
-            <a href="./index2.html" class="nav-link">
+            <a href="{{ route('pendaftar.webinar') }}" class="nav-link">
               <i class="nav-icon far fa-calendar-check"></i>
               <p>Webinar Saya</p>
             </a>
