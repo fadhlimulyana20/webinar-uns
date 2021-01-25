@@ -42,7 +42,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="./pendaftaran" class="nav-link">
                 <i class="nav-icon fas fa-calendar-plus"></i>
                 <p>Pendaftaran</p>
               </a>

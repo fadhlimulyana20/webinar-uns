@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pendaftar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\WebinarJadwal;
 
 class PendaftarController extends Controller
 {
@@ -81,5 +82,11 @@ class PendaftarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Mengelola pendaftaran webinar oleh pendaftar
+    public function pendaftaran(){
+        $webinars = WebinarJadwal::all();
+        return view('pendaftar.webinar.pendaftaran')->with('webinars',$webinars);
     }
 }
