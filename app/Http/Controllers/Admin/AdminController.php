@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\WebinarJadwal as Webinar;
+use App\Pembicara;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -169,5 +170,121 @@ class AdminController extends Controller
         $webinar->delete();
 
         return redirect('admin/webinar');
+    }
+
+
+    // menampilkan seluruh pembicara
+    public function Pembicara(){
+        $pembicara = Pembicara::all();
+
+        return view('admin.pembicara.index')->with('pembicara', $pembicara);
+    }
+
+    public function CreatePembicara(){
+        $webinar = Webinar::pluck('agenda', 'id');
+
+        return view('admin.pembicara.create')->with('webinar', $webinar);
+    }
+
+    public function StorePembicara(Request $request){
+        $this->validate($request, [
+            'nama_pembicara' => 'required',
+            'topik' => 'required',
+            'tanggal_presentasi' => 'required',
+            'jam' => 'required',
+            'webinar' => 'required',
+            'file_materi' => 'required'
+        ]);
+
+        $pembicara = new Pembicara;
+        $pembicara->nama_pembicara = $request->input('nama_pembicara');
+        $pembicara->topik = $request->input('topik');
+        $pembicara->tanggal_presentasi = $request->input('tanggal_presentasi');
+        $pembicara->jam = $request->input('jam');
+        $pembicara->webinar_id = $request->input('webinar');
+        
+        if($request->hasFile('file_materi')){
+            $file = $request->file('file_materi');
+            $upload_path = 'public/file_materi';
+            $file_name = time().'_'.$file->getClientOriginalName();
+
+            $file->storeAs($upload_path, $file_name);
+
+            $pembicara->file_materi = '/storage/file_materi/'.$file_name;
+            $pembicara->nama_file_materi = $file->getClientOriginalName();
+        }
+
+        $pembicara->save();
+
+        return redirect(route('admin.pembicara'));
+    }
+
+    public function DestroyPembicara($id){
+        $pembicara = Pembicara::find($id);
+
+        if($pembicara->file_materi != ''){
+            $path = $pembicara->file_materi;
+            $path_to_delete = str_replace('/storage/', '/public/', $path);
+            Storage::delete($path_to_delete);
+        }
+
+        $pembicara->delete();
+
+        return redirect('/admin/pembicara');
+    }
+
+    public function PembicaraDetail($id){
+        $pembicara = Pembicara::find($id);
+
+        return $pembicara;
+    }
+
+    public function EditPembicara($id){
+        $pembicara = Pembicara::find($id);
+        $webinar = Webinar::pluck('agenda', 'id');
+
+        return view('admin.pembicara.edit', [
+            'pembicara' => $pembicara,
+            'webinar' => $webinar
+        ]);
+    }
+
+    public function UpdatePembicara(Request $request, $id){
+        $pembicara = Pembicara::find($id);
+
+        $this->validate($request, [
+            'nama_pembicara' => 'required',
+            'topik' => 'required',
+            'tanggal_presentasi' => 'required',
+            'jam' => 'required',
+            'webinar' => 'required',
+        ]);
+
+        $pembicara->nama_pembicara = $request->input('nama_pembicara');
+        $pembicara->topik = $request->input('topik');
+        $pembicara->tanggal_presentasi = $request->input('tanggal_presentasi');
+        $pembicara->jam = $request->input('jam');
+        $pembicara->webinar_id = $request->input('webinar');
+
+        if($request->hasFile('file_materi')){
+            $file_old = $pembicara->file_materi;
+            if($file_old){
+                Storage::delete('/public/file_materi/'.$file_old);
+            }
+
+            $file = $request->file('file_materi');
+            $upload_path = 'public/file_materi';
+            $file_name = time().'_'.$file->getClientOriginalName();
+
+            $file->storeAs($upload_path, $file_name);
+
+            $pembicara->file_materi = '/storage/file_materi/'.$file_name;
+            $pembicara->nama_file_materi = $file->getClientOriginalName();
+        }
+
+        $pembicara->save();
+
+        return redirect(route('admin.pembicara'));
+        
     }
 }

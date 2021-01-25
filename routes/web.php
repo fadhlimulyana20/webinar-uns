@@ -43,6 +43,13 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:are-
   Route::get('webinar/create', 'AdminController@createWebinar')->name('webinar.create');
   Route::get('webinar/{webinar}/edit', 'AdminController@editWebinar')->name('webinar.edit');
   Route::match(['put', 'patch'], 'webinar/{webinar}', 'AdminController@updateWebinar')->name('webinar.update');
+  // Pembicara Routing
+  Route::get('pembicara/', 'AdminController@Pembicara')->name('pembicara');
+  Route::get('pembicara/create', 'AdminController@CreatePembicara')->name('pembicara.create');
+  Route::post('pembicara/', 'AdminController@StorePembicara')->name('pembicara.store');
+  Route::put('pembicara/{id}', 'AdminController@UpdatePembicara')->name('pembicara.update');
+  Route::get('pembicara/{id}/edit', 'AdminController@EditPembicara')->name('pembicara.edit');
+  Route::delete('pembicara/{id}', 'AdminController@DestroyPembicara')->name('pembicara.destroy');
 });
 
 Route::namespace('Pendaftar')->prefix('pendaftar')->name('pendaftar.')->middleware('can:are-pendaftar')->group(function(){

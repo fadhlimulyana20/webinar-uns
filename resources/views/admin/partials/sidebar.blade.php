@@ -32,7 +32,7 @@
              </p>
            </a>
          </li>
-        <li class="nav-item has-treeview menu-open">
+        <li class="nav-item has-treeview {{ (strpos(Route::currentRouteName(), 'admin.webinar') !== False) ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ (strpos(Route::currentRouteName(), 'admin.webinar') !== False) ? 'active' : '' }}">
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>
@@ -55,7 +55,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview {{ (strpos(Route::currentRouteName(), 'admin.pembicara') !== False) ? 'menu-open' : '' }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chalkboard-teacher"></i>
             <p>
@@ -65,15 +65,15 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
-                <i class="fas fa-user-plus nav-icon"></i>
-                <p>Tambahkan pembicara</p>
+              <a href="{{ route('admin.pembicara') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'admin.pembicara') !== False) ? 'active' : '' }}">
+                <i class="fas fa-portrait nav-icon"></i>
+                <p>Daftar pembicara</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                <i class="fas fa-portrait nav-icon"></i>
-                <p>Daftar pembicara</p>
+              <a href="{{ route('admin.pembicara.create') }}" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Tambahkan pembicara</p>
               </a>
             </li>
           </ul>
