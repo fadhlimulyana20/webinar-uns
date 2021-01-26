@@ -12,7 +12,23 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-      return view('admin.layout');
+        // Find User
+        $id_user = auth()->user()->id_user;
+        $user = User::find($id_user);
+        $webinars = $user->organizeWebinar;
+        $closest_webinars = $webinars->where('tanggal_awal', '>=', now())->sortBy('tanggal_awal')->take(5);
+        $speaker_count = 0;
+
+        foreach($webinars as $webinar){
+            $speaker = count($webinar->getSpeaker);
+            $speaker_count += $speaker;
+        }
+
+      return view('admin.index', [
+            'webinars' => $webinars,
+            'closest_webinars' => $closest_webinars,
+            'speaker_count' => $speaker_count
+        ]);
     }
 
     // controller untuk webinar yang dimiliki oleh user
