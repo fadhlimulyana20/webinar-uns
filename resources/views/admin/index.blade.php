@@ -50,12 +50,16 @@
                     </div>
                     <div class="card-body">
                         <div class="list-group">
-                            @foreach ($closest_webinars as $cw)
-                                <a href="/admin/webinar/{{ $cw->id }}/edit" class="list-group-item list-group-item-action">
-                                    <h5>{{$cw->agenda}}</h5>
-                                    <h6>{{$cw->tanggal_pelaksanaan}}</h6>
-                                </a>
-                            @endforeach
+                            @if (count($closest_webinars) > 0)
+                                @foreach ($closest_webinars as $cw)
+                                    <a href="/admin/webinar/{{ $cw->id }}/edit" class="list-group-item list-group-item-action">
+                                        <h5>{{$cw->agenda}}</h5>
+                                        <h6>{{$cw->tanggal_pelaksanaan}}</h6>
+                                    </a>
+                                @endforeach
+                            @else
+                                <h6 class="text-center">Tidak Ada</h6>
+                            @endif
                           </div>
                     </div>
                 </div>
